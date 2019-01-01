@@ -1,11 +1,17 @@
 package com.example.dagger2;
 
+import javax.inject.Inject;
+
 public class Main {
+
+    @Inject
+    Car mCar;
 
     public static void main(String[] args){
 
-        Engine engine = new Engine(4);
+        Car car = DaggerCarComponent.builder().build().getCar();
 
-        Car car = new Mondeo(engine);
+        System.out.println("cylinderNumbers : " + car.getEngine().getCylinderNumbers());
+
     }
 }

@@ -1,9 +1,18 @@
 package com.example.dagger2;
 
-import dagger.Component;
+import dagger.Subcomponent;
 
-@Component(dependencies = EngineComponent.class)
+@Subcomponent(modules = CarModule.class)
 public interface CarComponent {
 
     Car getCar();
+
+    @Subcomponent.Builder
+    interface Builder{
+
+        Builder carModule(CarModule module);
+
+        CarComponent build();
+
+    }
 }

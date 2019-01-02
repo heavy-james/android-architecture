@@ -4,9 +4,12 @@ public class Main {
 
     public static void main(String[] args){
 
-        EngineComponent engineComponent = DaggerEngineComponent.create();
-
-        Car car = DaggerCarComponent.builder().engineComponent(engineComponent).build().getCar();
+        Car car = DaggerEngineComponent.builder()
+                .engineModule(new EngineModule())
+                .build()
+                .carComponent()
+                .carModule(new CarModule())
+                .build().getCar();
 
         System.out.println("cylinderNumbers : " + car.getEngine().getCylinderNumbers());
     }

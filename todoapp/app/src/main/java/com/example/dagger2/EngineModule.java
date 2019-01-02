@@ -3,7 +3,7 @@ package com.example.dagger2;
 import dagger.Module;
 import dagger.Provides;
 
-@Module
+@Module(subcomponents = CarComponent.class)
 public class EngineModule {
 
     @Provides

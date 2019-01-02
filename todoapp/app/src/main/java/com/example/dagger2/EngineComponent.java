@@ -7,4 +7,6 @@ public interface EngineComponent {
 
     Engine getEngine();
 
+    CarComponent.Builder carComponent();
+
 }

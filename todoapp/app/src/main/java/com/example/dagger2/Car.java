@@ -9,7 +9,6 @@ public class Car {
     @Inject
     Engine mEngine;
 
-    @Inject
     public Car(Engine engine){
         mEngine = engine;
     }

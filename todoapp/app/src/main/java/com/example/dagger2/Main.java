@@ -1,11 +1,6 @@
 package com.example.dagger2;
 
-import javax.inject.Inject;
-
 public class Main {
-
-    @Inject
-    Car mCar;
 
     public static void main(String[] args){
 

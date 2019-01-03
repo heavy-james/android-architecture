@@ -4,7 +4,7 @@ import com.example.dagger2.qualified.QualifierCarA;
 import com.example.dagger2.qualified.QualifierCarB;
 import com.example.dagger2.qualified.QualifierEngineA;
 import com.example.dagger2.qualified.QualifierEngineB;
-import com.example.dagger2.scope.ScopeCarB;
+import com.example.dagger2.scope.ScopeCarA;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,6 +13,7 @@ import dagger.Provides;
 public class CarModule {
 
     @Provides
+    @ScopeCarA
     @QualifierCarA
     Car provideCarA(@QualifierEngineA Engine engine){
         return new Car(engine);
@@ -20,7 +21,6 @@ public class CarModule {
 
     @Provides
     @QualifierCarB
-    @ScopeCarB
     Car provideCarB(@QualifierEngineB Engine engine){
         return new Car(engine);
     }

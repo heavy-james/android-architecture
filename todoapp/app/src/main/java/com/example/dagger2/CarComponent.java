@@ -7,7 +7,6 @@ import com.example.dagger2.scope.ScopeCarB;
 
 import dagger.Subcomponent;
 
-
 @ScopeCarA
 @ScopeCarB
 @Subcomponent(modules = CarModule.class)

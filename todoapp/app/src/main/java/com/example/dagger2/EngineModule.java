@@ -1,24 +1,29 @@
 package com.example.dagger2;
 
-import com.example.dagger2.qualified.QualifierEngineA;
-import com.example.dagger2.qualified.QualifierEngineB;
-
 import dagger.Module;
 import dagger.Provides;
+import dagger.multibindings.IntoMap;
+import dagger.multibindings.IntoSet;
+import dagger.multibindings.StringKey;
 
 @Module(subcomponents = CarComponent.class)
 public class EngineModule {
 
     @Provides
-    @QualifierEngineA
-    Engine provideEngineA(){
-        return new Engine(3);
+    Engine provideEngine(){
+        return new Engine(1);
     }
 
     @Provides
-    @QualifierEngineB
-    Engine provideEngineB(){
-        return new Engine(5);
+    @IntoSet
+    Engine provideEngineIntoSet2(){
+        return new Engine(2);
     }
 
+    @Provides
+    @IntoMap
+    @StringKey("3")
+    Engine provideEngineIntoMap3(){
+        return new Engine(3);
+    }
 }

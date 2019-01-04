@@ -1,18 +1,30 @@
 package com.example.dagger2;
 
-import com.example.dagger2.qualified.QualifierEngineA;
-import com.example.dagger2.qualified.QualifierEngineB;
+import java.util.Map;
+import java.util.Set;
 
+import dagger.BindsInstance;
 import dagger.Component;
 
-@Component(modules = EngineModule.class)
+@Component(modules = {EngineModule.class, AbsEngineModule.class})
 public interface EngineComponent {
 
-    @QualifierEngineA
-    Engine getEngineA();
+    String getTag();
 
-    @QualifierEngineB
-    Engine getEngineB();
+    Set<Engine> engineSet();
+
+    Map<String, Engine> engineMap();
 
     CarComponent.Builder carComponent();
+
+    @Component.Builder
+    interface Builder{
+
+        @BindsInstance
+        Builder tag(String tag);
+
+        Builder engineModule(EngineModule engineModule);
+
+        EngineComponent build();
+    }
 }

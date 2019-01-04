@@ -1,27 +1,13 @@
 package com.example.dagger2;
 
-import com.example.dagger2.qualified.QualifierCarA;
-import com.example.dagger2.qualified.QualifierCarB;
-import com.example.dagger2.qualified.QualifierEngineA;
-import com.example.dagger2.qualified.QualifierEngineB;
-import com.example.dagger2.scope.ScopeCarA;
+import com.example.dagger2.qualified.QualifierMondeo;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
-public class CarModule {
-
-    @Provides
-    @ScopeCarA
-    @QualifierCarA
-    Car provideCarA(@QualifierEngineA Engine engine){
-        return new Car(engine);
-    }
-
-    @Provides
-    @QualifierCarB
-    Car provideCarB(@QualifierEngineB Engine engine){
-        return new Car(engine);
-    }
+public abstract class CarModule {
+    @Binds
+    @QualifierMondeo
+    abstract Car provideCarA(Mondeo mondeo);
 }

@@ -2,11 +2,14 @@ package com.example.android.architecture.blueprints.todoapp;
 
 import android.app.Application;
 import android.support.annotation.VisibleForTesting;
+
 import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository;
 import com.example.android.architecture.blueprints.todoapp.di.DaggerAppComponent;
+
+import javax.inject.Inject;
+
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
-import javax.inject.Inject;
 
 /**
  * We create a custom {@link Application} class that extends  {@link DaggerApplication}.
@@ -19,6 +22,7 @@ public class ToDoApplication extends DaggerApplication {
 
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+
         return DaggerAppComponent.builder().application(this).build();
     }
 

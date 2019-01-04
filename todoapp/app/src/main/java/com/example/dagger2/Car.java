@@ -6,9 +6,9 @@ public class Car {
 
     String mName;
 
-    @Inject
     Engine mEngine;
 
+    @Inject
     public Car(Engine engine){
         mEngine = engine;
     }

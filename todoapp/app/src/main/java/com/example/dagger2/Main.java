@@ -1,5 +1,8 @@
 package com.example.dagger2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -13,21 +16,26 @@ public class Main {
 
     private static void testCar(EngineComponent engineComponent) {
 
-        CarComponent carComponent = engineComponent.carComponent().carModule(new CarModule()).build();
+        final CarComponent carComponent = engineComponent.carComponent().carModule(new CarModule()).build();
 
-        Car carA1 = carComponent.getCarA();
-        Car carA2 = carComponent.getCarA();
-        Car carA3 = carComponent.getCarA();
-        System.out.println("carA1 : " + carA1 + "; cylinderNumbers : " + carA1.getEngine().getCylinderNumbers());
-        System.out.println("carA2 : " + carA2 + "; cylinderNumbers : " + carA2.getEngine().getCylinderNumbers());
-        System.out.println("carA3 : " + carA3 + "; cylinderNumbers : " + carA3.getEngine().getCylinderNumbers() + "\n");
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Car carD = carComponent.getCarD();
+                System.out.println("thread : " + Thread.currentThread().getName() + "; carD : " + carD);
+            }
+        };
 
-        Car carB1 = carComponent.getCarB();
-        Car carB2 = carComponent.getCarB();
-        Car carB3 = carComponent.getCarB();
-        System.out.println("carB1 : " + carB1 +  "; cylinderNumbers : " + carB1.getEngine().getCylinderNumbers());
-        System.out.println("carB2 : " + carB2 +  "; cylinderNumbers : " + carB2.getEngine().getCylinderNumbers());
-        System.out.println("carB3 : " + carB3 +  "; cylinderNumbers : " + carB3.getEngine().getCylinderNumbers());
+        List<Thread> threads = new ArrayList<>(10);
+
+        for(int i = 0; i < 10; i ++){
+            Thread thread = new Thread(runnable);
+            threads.add(thread);
+        }
+
+        for(Thread thread : threads){
+            thread.start();
+        }
     }
 
     private static void testEngine(EngineComponent engineComponent){

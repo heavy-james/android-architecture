@@ -10,6 +10,11 @@ import dagger.Provides;
 public class EngineModule {
 
     @Provides
+    Engine provideEngine(){
+        return new Engine(1);
+    }
+
+    @Provides
     @QualifierEngineA
     Engine provideEngineA(){
         return new Engine(3);
